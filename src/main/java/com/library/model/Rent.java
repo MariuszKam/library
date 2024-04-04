@@ -24,6 +24,9 @@ public class Rent {
     @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;
+    @Column(name = "rent_date")
     private LocalDate rentDate;
+    @Column(name = "due_date")
     private LocalDate dueDate;
+    private boolean completed;
 }
