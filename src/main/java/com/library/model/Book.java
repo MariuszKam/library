@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_gen")
-    //@Column(name = "book_id", nullable = false, unique = true)
+    @Column(name = "book_id", nullable = false, unique = true)
     private Long id;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "author_id")

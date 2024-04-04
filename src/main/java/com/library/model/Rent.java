@@ -18,9 +18,12 @@ public class Rent {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rent_gen")
     private Long id;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
+    @ManyToOne
+    @JoinColumn(name = "book_id")
     private Book book;
-    private Author author;
     private LocalDate rentDate;
     private LocalDate dueDate;
 }

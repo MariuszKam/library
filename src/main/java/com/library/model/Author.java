@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "author_gen")
-    //@Column(name = "author_id", nullable = false, unique = true)
+    @Column(name = "author_id", nullable = false, unique = true)
     private Long id;
     private String name;
     private String lastname;
