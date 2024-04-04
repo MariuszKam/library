@@ -18,7 +18,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_gen")
     private Long id;
-    private String name;
+    private String username;
     private String email;
     private String password;
     @ManyToMany
