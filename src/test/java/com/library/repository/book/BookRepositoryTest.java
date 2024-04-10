@@ -1,8 +1,10 @@
-package com.library.repository;
+package com.library.repository.book;
 
 
 import com.library.model.Book;
-import com.library.utility.BookTestUtility;
+import com.library.repository.AuthorRepository;
+import com.library.repository.BookRepository;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,9 @@
-package com.library.repository;
+package com.library.repository.author;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.library.model.Author;
-import com.library.utility.AuthorTestUtility;
+import com.library.repository.AuthorRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -72,7 +72,7 @@ public class AuthorRepositoryTest {
 
     @AfterEach
     void cleanUp() {
-        // Clean up the test data after each test
+        //Clean up the test data after each test
         authorRepository.deleteAll();
     }
 
