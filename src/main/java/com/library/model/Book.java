@@ -21,4 +21,7 @@ public class Book {
     @JoinColumn(name = "author_id")
     private Author author;
     private String title;
+    @Column(name = "publication_year")
+    private Integer publicationYear;
+    private String isbn;
 }
