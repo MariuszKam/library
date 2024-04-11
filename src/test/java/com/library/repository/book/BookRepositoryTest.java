@@ -1,12 +1,14 @@
 package com.library.repository.book;
 
 
+import com.library.model.Author;
 import com.library.model.Book;
 import com.library.repository.AuthorRepository;
 import com.library.repository.BookRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.library.repository.author.AuthorTestUtility;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,17 +20,22 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 public class BookRepositoryTest {
 
     private BookRepository bookRepository;
+    private AuthorRepository authorRepository;
     private Book book = BookTestUtility.getHPBook();
     private Book savedBook;
 
 
     @Autowired
-    public BookRepositoryTest(BookRepository bookRepository) {
+    public BookRepositoryTest(BookRepository bookRepository, AuthorRepository authorRepository) {
         this.bookRepository = bookRepository;
+        this.authorRepository = authorRepository;
     }
 
     @BeforeEach
     void setUp() {
+        Author jkr = AuthorTestUtility.getJKRowlingAuthor();
+        jkr = authorRepository.save(jkr);
+        book.setAuthor(jkr);
         savedBook = bookRepository.save(book);
     }
 
@@ -44,7 +51,34 @@ public class BookRepositoryTest {
 
     @Test
     void testReadBook() {
+        Book retrievedBook = bookRepository.findById(savedBook.getId()).orElse(null);
 
+        //Assert that the retrieved book exists
+        assertThat(retrievedBook).isNotNull();
+
+        // Assert that the retrieved book's attributes match the saved book's attributes
+        assertThat(retrievedBook.getId()).isEqualTo(savedBook.getId());
+        assertThat(retrievedBook.getTitle()).isEqualTo(savedBook.getTitle());
+        assertThat(retrievedBook.getAuthor()).isEqualTo(savedBook.getAuthor());
+        assertThat(retrievedBook.getPublicationYear()).isEqualTo(savedBook.getPublicationYear());
+        assertThat(retrievedBook.getIsbn()).isEqualTo(savedBook.getIsbn());
+    }
+
+    @Test
+    void testUpdateBook() {
+        book.setTitle("Renamed");
+        savedBook = bookRepository.save(book);
+        //Assertion update
+        assertThat(savedBook).isNotNull();
+        assertThat(savedBook.getTitle()).isEqualTo("Renamed");
+    }
+
+    @Test
+    void testDeleteBook() {
+        bookRepository.delete(book);
+        Book retrieveBook = bookRepository.findById(savedBook.getId()).orElse(null);
+        //Assert if it's deleted/empty
+        assertThat(retrieveBook).isNull();
     }
 
     @AfterEach

@@ -62,9 +62,9 @@ public class AuthorRepositoryTest {
     @Test
     void testDeleteAuthor() {
         authorRepository.delete(author);
-        Author author = authorRepository.findById(1L).orElse(null);
+        Author retrieveAuthor = authorRepository.findById(savedAuthor.getId()).orElse(null);
         //Assert if it's deleted/empty
-        assertThat(author).isNull();
+        assertThat(retrieveAuthor).isNull();
     }
 
     @AfterEach

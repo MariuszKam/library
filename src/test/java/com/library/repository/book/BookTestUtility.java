@@ -47,6 +47,10 @@ public class BookTestUtility {
     }
 
     public static Book getHPBook() {
-        return getHPBooks().get(1);
+        return Book.builder()
+                .title(title.get(0))
+                .publicationYear(publicationYears.get(0))
+                .isbn(isbns.get(0))
+                .build();
     }
 }
