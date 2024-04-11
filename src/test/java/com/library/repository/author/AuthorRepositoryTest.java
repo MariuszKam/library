@@ -25,7 +25,7 @@ public class AuthorRepositoryTest {
     }
 
     @BeforeEach
-    void createAuthor() {
+    void setUp() {
         //Creating and saving author object
         savedAuthor = authorRepository.save(author);
     }

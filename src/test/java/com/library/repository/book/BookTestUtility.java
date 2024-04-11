@@ -4,9 +4,8 @@ import com.library.model.Author;
 import com.library.model.Book;
 import com.library.repository.author.AuthorTestUtility;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class BookTestUtility {
 
@@ -27,8 +26,8 @@ public class BookTestUtility {
             "9780545010221"
     );
 
-    public static Set<Book> getHPBooks() {
-        Set<Book> books = new HashSet<>();
+    public static List<Book> getHPBooks() {
+        List<Book> books = new ArrayList<>();
         Author author = AuthorTestUtility.getJKRowlingAuthor();
         for (int i = 0; i < title.size(); i++) {
             String currentTitle = title.get(i);
@@ -45,5 +44,9 @@ public class BookTestUtility {
             books.add(book);
         }
         return books;
+    }
+
+    public static Book getHPBook() {
+        return getHPBooks().get(1);
     }
 }
