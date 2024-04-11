@@ -10,8 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import java.util.Optional;
-
 @DataJpaTest
 public class AuthorRepositoryTest {
 
@@ -40,17 +38,16 @@ public class AuthorRepositoryTest {
 
     @Test
     void testReadAuthor() {
-        Optional<Author> optionalAuthor = authorRepository.findById(savedAuthor.getId());
+        Author retrieveAuthor = authorRepository.findById(savedAuthor.getId()).orElse(null);
 
         //Assert that the author is present
-        assertThat(optionalAuthor).isPresent();
+        assertThat(retrieveAuthor).isNotNull();
 
         //Assert if data is correct
-        optionalAuthor.ifPresent(a -> {
-            assertThat(a.getId()).isEqualTo(savedAuthor.getId());
-            assertThat(a.getName()).isEqualTo(savedAuthor.getName());
-            assertThat(a.getLastname()).isEqualTo(savedAuthor.getLastname());
-        });
+        assertThat(retrieveAuthor.getId()).isEqualTo(savedAuthor.getId());
+        assertThat(retrieveAuthor.getName()).isEqualTo(savedAuthor.getName());
+        assertThat(retrieveAuthor.getLastname()).isEqualTo(savedAuthor.getLastname());
+
     }
 
     @Test
@@ -65,9 +62,9 @@ public class AuthorRepositoryTest {
     @Test
     void testDeleteAuthor() {
         authorRepository.delete(author);
-        Optional<Author> author = authorRepository.findById(1L);
+        Author author = authorRepository.findById(1L).orElse(null);
         //Assert if it's deleted/empty
-        assertThat(author).isEmpty();
+        assertThat(author).isNull();
     }
 
     @AfterEach

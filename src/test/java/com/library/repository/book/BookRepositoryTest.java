@@ -7,6 +7,7 @@ import com.library.repository.BookRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,15 @@ public class BookRepositoryTest {
         assertThat(savedBook.getAuthor()).isEqualTo(book.getAuthor());
         assertThat(savedBook.getPublicationYear()).isEqualTo(book.getPublicationYear());
         assertThat(savedBook.getIsbn()).isEqualTo(book.getIsbn());
+    }
+
+    @Test
+    void testReadBook() {
+
+    }
+
+    @AfterEach
+    void cleanUp() {
+        bookRepository.deleteAll();
     }
 }
