@@ -28,14 +28,12 @@ public class BookTestUtility {
 
     public static List<Book> getHPBooks() {
         List<Book> books = new ArrayList<>();
-        Author author = AuthorTestUtility.getJKRowlingAuthor();
         for (int i = 0; i < title.size(); i++) {
             String currentTitle = title.get(i);
             Integer currentPublicationYear = publicationYears.get(i);
             String currentIsbn = isbns.get(i);
 
             Book book = Book.builder()
-                    .author(author)
                     .title(currentTitle)
                     .publicationYear(currentPublicationYear)
                     .isbn(currentIsbn)

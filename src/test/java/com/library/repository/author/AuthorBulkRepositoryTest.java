@@ -31,7 +31,7 @@ public class AuthorBulkRepositoryTest {
     }
 
     @Test
-    void testBulkSaveAuthors() {
+    void testBulkCreateAuthors() {
         //Assert that all authors are saved
         assertThat(authorsToSave).isNotNull();
         assertThat(authorsToSave.size()).isEqualTo(authors.size());
