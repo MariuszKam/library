@@ -14,7 +14,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 public class AuthorRepositoryTest {
 
     private AuthorRepository authorRepository;
-    private Author author = AuthorTestUtility.getJKRowlingAuthor();
+    private Author author;
     private Author savedAuthor;
 
     @Autowired
@@ -24,6 +24,8 @@ public class AuthorRepositoryTest {
 
     @BeforeEach
     void setUp() {
+        //Loading the original(JKRowling) author
+        author = AuthorTestUtility.getJKRowlingAuthor();
         //Creating and saving author object
         savedAuthor = authorRepository.save(author);
     }
@@ -47,7 +49,6 @@ public class AuthorRepositoryTest {
         assertThat(retrieveAuthor.getId()).isEqualTo(savedAuthor.getId());
         assertThat(retrieveAuthor.getName()).isEqualTo(savedAuthor.getName());
         assertThat(retrieveAuthor.getLastname()).isEqualTo(savedAuthor.getLastname());
-
     }
 
     @Test

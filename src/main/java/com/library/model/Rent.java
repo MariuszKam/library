@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @Table(name = "rent")
 public class Rent {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rent_gen")
+    @GeneratedValue
     private Long id;
     @ManyToOne
     @JoinColumn(name = "user_id")

@@ -11,7 +11,10 @@ public class AuthorTestUtility {
             Author.builder().name("Charles").lastname("Dickens").build());
 
     public static Author getJKRowlingAuthor() {
-        return authors.get(1);
+        return Author.builder()
+                .name("J.K")
+                .lastname("Rowling")
+                .build();
     }
 
     public static List<Author> getAuthors() {

@@ -16,7 +16,7 @@ import java.util.Set;
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_gen")
+    @GeneratedValue
     private Long id;
     private String username;
     private String email;

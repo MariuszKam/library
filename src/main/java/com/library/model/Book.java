@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "book")
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "book_gen")
+    @GeneratedValue
     @Column(name = "book_id", nullable = false, unique = true)
     private Long id;
     @ManyToOne(cascade = CascadeType.ALL)

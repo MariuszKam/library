@@ -16,7 +16,7 @@ import java.util.Set;
 @Table(name = "role")
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "role_gen")
+    @GeneratedValue
     private Long id;
     private String name;
     @ManyToMany(mappedBy = "roles")
