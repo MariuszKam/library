@@ -49,7 +49,8 @@ public class BookBulkRepositoryTest {
     @Test
     void testBulkReadBooks() {
         List<Book> booksFromDB = bookRepository.findAll();
-        booksFromDB.forEach(book -> assertThat(books).contains(book));
+        assertThat(booksFromDB).isNotNull();
+        books.forEach(book -> assertThat(booksFromDB).contains(book));
     }
 
     @Test
@@ -61,7 +62,7 @@ public class BookBulkRepositoryTest {
 
     @AfterEach
     void cleanUp() {
-        //Clean up the test data after each test
+        //Clean up database
         bookRepository.deleteAll();
     }
 }

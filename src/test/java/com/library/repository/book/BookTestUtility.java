@@ -46,9 +46,9 @@ public class BookTestUtility {
 
     public static Book getHPBook() {
         return Book.builder()
-                .title(title.get(0))
-                .publicationYear(publicationYears.get(0))
-                .isbn(isbns.get(0))
+                .title(title.getFirst())
+                .publicationYear(publicationYears.getFirst())
+                .isbn(isbns.getFirst())
                 .build();
     }
 }

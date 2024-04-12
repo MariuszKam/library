@@ -70,7 +70,7 @@ public class AuthorRepositoryTest {
 
     @AfterEach
     void cleanUp() {
-        //Clean up the test data after each test
+        //Clean up the repository after each test
         authorRepository.deleteAll();
     }
 
