@@ -21,9 +21,14 @@ public class UserRepositoryTest {
 
     @Test
     void shouldFindUserByUsernameWithoutRoles() {
+        //Adding instance of User to db
         User user = UserTestUtility.getTestUser();
         userRepository.save(user);
+
+        //Retrieving instance of User by username value
         Optional<User> optionalUserFromDb = userRepository.findByUsername(user.getUsername());
+
+        //Asserting if 3 fields Username, Email, Password are correct
         assertThat(optionalUserFromDb)
                 .isPresent()
                 .hasValueSatisfying(userFromDb -> {
