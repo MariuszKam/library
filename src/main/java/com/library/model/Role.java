@@ -18,6 +18,7 @@ import java.util.Set;
 public class Role {
     @Id
     @GeneratedValue
+    @Column(name = "role_id", nullable = false, unique = true)
     private Long id;
     private String name;
     @ManyToMany(mappedBy = "roles")

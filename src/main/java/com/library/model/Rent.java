@@ -17,6 +17,7 @@ import java.time.LocalDate;
 public class Rent {
     @Id
     @GeneratedValue
+    @Column(name = "rent_id", nullable = false, unique = true)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "user_id")

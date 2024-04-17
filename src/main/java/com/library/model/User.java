@@ -22,6 +22,7 @@ import java.util.Set;
 public class User implements UserDetails {
     @Id
     @GeneratedValue
+    @Column(name = "user_id", nullable = false, unique = true)
     private Long id;
     private String username;
     private String email;
