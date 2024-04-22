@@ -7,6 +7,7 @@ import com.library.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.cglib.core.internal.Function;
 
 import java.util.Optional;
 
@@ -25,29 +26,21 @@ public class UserRepositoryTest {
         User user = UserTestUtility.getTestUser();
         userRepository.save(user);
 
-        //Retrieving instance of User by username value
-        Optional<User> optionalUserFromDb = userRepository.findByUsername(user.getUsername());
-
-        //Asserting if 3 fields Username, Email, Password are correct
-        assertThat(optionalUserFromDb)
-                .isPresent()
-                .hasValueSatisfying(userFromDb -> {
-                    assertThat(userFromDb.getUsername()).isEqualTo(user.getUsername());
-                    assertThat(userFromDb.getEmail()).isEqualTo(user.getEmail());
-                    assertThat(userFromDb.getPassword()).isEqualTo(user.getPassword());
-                    assertThat(userFromDb.getRoles()).isNull();
-                });
+        assertUserExists(user,user.getUsername(), userRepository::findByUsername);
     }
 
-    @Test void shouldFindUserByEmailWithoutRoles() {
+    @Test
+    void shouldFindUserByEmailWithoutRoles() {
         //Adding instance of User to db
         User user = UserTestUtility.getTestUser();
         userRepository.save(user);
 
-        ////Retrieving instance of User by username value
-        Optional<User> optionalUserFromDb = userRepository.findByEmail(user.getEmail());
+        assertUserExists(user, user.getEmail(), userRepository::findByEmail);
+    }
 
-        //Asserting if 3 fields Username, Email, Password are correct
+    //Utilities
+    private void assertUserExists(User user, String identifier, Function<String, Optional<User>> findByFunction) {
+        Optional<User> optionalUserFromDb = findByFunction.apply(identifier);
         assertThat(optionalUserFromDb)
                 .isPresent()
                 .hasValueSatisfying(userFromDb -> {
