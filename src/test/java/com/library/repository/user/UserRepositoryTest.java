@@ -38,4 +38,23 @@ public class UserRepositoryTest {
                     assertThat(userFromDb.getRoles()).isNull();
                 });
     }
+
+    @Test void shouldFindUserByEmailWithoutRoles() {
+        //Adding instance of User to db
+        User user = UserTestUtility.getTestUser();
+        userRepository.save(user);
+
+        ////Retrieving instance of User by username value
+        Optional<User> optionalUserFromDb = userRepository.findByEmail(user.getEmail());
+
+        //Asserting if 3 fields Username, Email, Password are correct
+        assertThat(optionalUserFromDb)
+                .isPresent()
+                .hasValueSatisfying(userFromDb -> {
+                    assertThat(userFromDb.getUsername()).isEqualTo(user.getUsername());
+                    assertThat(userFromDb.getEmail()).isEqualTo(user.getEmail());
+                    assertThat(userFromDb.getPassword()).isEqualTo(user.getPassword());
+                    assertThat(userFromDb.getRoles()).isNull();
+                });
+    }
 }
