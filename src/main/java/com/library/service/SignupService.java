@@ -5,11 +5,11 @@ import com.library.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RegistrationService {
+public class SignupService {
 
     private UserRepository userRepository;
 
-    public RegistrationService(UserRepository userRepository) {
+    public SignupService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -23,24 +23,7 @@ public class RegistrationService {
     }
 
     private boolean isUserValid(User user) {
-        //TODO: NEED TO MAKE CHANGES ABOUT ORDER!!
-        return isEmailValid(user.getEmail()) &&
-                isUsernameValid(user.getUsername()) &&
-                isPasswordValid(user.getPassword()) &&
-                isUniqueEmail(user.getEmail()) &&
-                isUniqueUsername(user.getUsername());
-    }
-
-    private boolean isEmailValid(String email) {
-        return true;
-    }
-
-    private boolean isUsernameValid(String username) {
-        return true;
-    }
-
-    private boolean isPasswordValid(String password) {
-        return true;
+        return isUniqueEmail(user.getEmail()) && isUniqueUsername(user.getUsername());
     }
 
     private boolean isUniqueEmail(String email) {
