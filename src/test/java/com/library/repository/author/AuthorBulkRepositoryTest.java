@@ -33,14 +33,14 @@ public class AuthorBulkRepositoryTest {
     }
 
     @Test
-    void testBulkCreateAuthors() {
+    public void testBulkCreateAuthors() {
         //Assert that all authors are saved
         assertThat(authorsToSave).isNotNull();
         assertThat(authorsToSave.size()).isEqualTo(authors.size());
     }
 
     @Test
-    void testBulkReadAuthors() {
+    public void testBulkReadAuthors() {
         List<Author> authorsFromDB = authorRepository.findAll();
         //Asserts that it contains all entities that were saved before to DB
         assertThat(authorsFromDB).isNotEmpty();
@@ -48,7 +48,7 @@ public class AuthorBulkRepositoryTest {
     }
 
     @Test
-    void testBulkDeleteAuthors() {
+    public void testBulkDeleteAuthors() {
         authorRepository.deleteAll();
         List<Author> authorsFromDB = authorRepository.findAll();
         System.out.println(authorsFromDB);

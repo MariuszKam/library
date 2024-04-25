@@ -31,7 +31,7 @@ public class AuthorRepositoryTest {
     }
 
     @Test
-    void testCreateAuthor() {
+    public void testCreateAuthor() {
         //Assertion of author with AssertJ
         assertThat(savedAuthor.getId()).isNotNull();
         assertThat(savedAuthor.getName()).isEqualTo(author.getName());
@@ -39,7 +39,7 @@ public class AuthorRepositoryTest {
     }
 
     @Test
-    void testReadAuthor() {
+    public void testReadAuthor() {
         Author retrieveAuthor = authorRepository.findById(savedAuthor.getId()).orElse(null);
 
         //Assert that the author is present
@@ -52,7 +52,7 @@ public class AuthorRepositoryTest {
     }
 
     @Test
-    void testUpdateAuthor() {
+    public void testUpdateAuthor() {
         author.setName("Renamed");
         savedAuthor = authorRepository.save(author);
         //Assertion update
@@ -61,7 +61,7 @@ public class AuthorRepositoryTest {
     }
 
     @Test
-    void testDeleteAuthor() {
+    public void testDeleteAuthor() {
         authorRepository.delete(author);
         Author retrieveAuthor = authorRepository.findById(savedAuthor.getId()).orElse(null);
         //Assert if it's deleted/empty
@@ -69,7 +69,7 @@ public class AuthorRepositoryTest {
     }
 
     @AfterEach
-    void cleanUp() {
+    public void cleanUp() {
         //Clean up the repository after each test
         authorRepository.deleteAll();
     }

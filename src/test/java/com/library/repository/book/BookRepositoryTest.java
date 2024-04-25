@@ -40,7 +40,7 @@ public class BookRepositoryTest {
     }
 
     @Test
-    void testCreateBook() {
+    public void testCreateBook() {
         //Assertion of author with AssertJ
         assertThat(savedBook.getId()).isNotNull();
         assertThat(savedBook.getTitle()).isEqualTo(book.getTitle());
@@ -50,7 +50,7 @@ public class BookRepositoryTest {
     }
 
     @Test
-    void testReadBook() {
+    public void testReadBook() {
         Book retrievedBook = bookRepository.findById(savedBook.getId()).orElse(null);
 
         //Assert that the retrieved book exists
@@ -65,7 +65,7 @@ public class BookRepositoryTest {
     }
 
     @Test
-    void testUpdateBook() {
+    public void testUpdateBook() {
         book.setTitle("Renamed");
         savedBook = bookRepository.save(book);
         //Assertion update
@@ -74,7 +74,7 @@ public class BookRepositoryTest {
     }
 
     @Test
-    void testDeleteBook() {
+    public void testDeleteBook() {
         bookRepository.delete(book);
         Book retrieveBook = bookRepository.findById(savedBook.getId()).orElse(null);
         //Assert if it's deleted/empty

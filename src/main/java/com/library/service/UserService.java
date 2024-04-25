@@ -1,25 +1,26 @@
 package com.library.service;
 
+import com.library.configuration.PasswordEncoderConfig;
 import com.library.model.User;
 import com.library.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SignupService {
+public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoderConfig passwordEncoderConfig;
 
-    public SignupService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoderConfig passwordEncoderConfig) {
         this.userRepository = userRepository;
+        this.passwordEncoderConfig = passwordEncoderConfig;
     }
 
-    public boolean registerUser(User user) {
-        if (!isUserValid(user)) {
-            return false;
-        }
+    public void signUser(User user) {
         // Perform registration logic
+        user.setPassword(passwordEncoderConfig.passwordEncoder()
+                .encode(user.getPassword()));
         userRepository.save(user);
-        return true;
     }
 
     private boolean isUserValid(User user) {

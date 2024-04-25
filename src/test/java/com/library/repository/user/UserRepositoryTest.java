@@ -21,7 +21,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    void shouldFindUserByUsernameWithoutRoles() {
+    public void shouldFindUserByUsernameWithoutRoles() {
         //Adding instance of User to db
         User user = UserTestUtility.getTestUser();
         userRepository.save(user);
@@ -30,7 +30,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    void shouldFindUserByEmailWithoutRoles() {
+    public void shouldFindUserByEmailWithoutRoles() {
         //Adding instance of User to db
         User user = UserTestUtility.getTestUser();
         userRepository.save(user);

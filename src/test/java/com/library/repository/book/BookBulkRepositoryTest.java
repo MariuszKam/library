@@ -41,20 +41,20 @@ public class BookBulkRepositoryTest {
     }
 
     @Test
-    void testBulkCreateBooks() {
+    public void testBulkCreateBooks() {
         assertThat(savedBooks).isNotNull();
         assertThat(savedBooks.size()).isEqualTo(books.size());
     }
 
     @Test
-    void testBulkReadBooks() {
+    public void testBulkReadBooks() {
         List<Book> booksFromDB = bookRepository.findAll();
         assertThat(booksFromDB).isNotNull();
         books.forEach(book -> assertThat(booksFromDB).contains(book));
     }
 
     @Test
-    void testBulkDeleteBooks() {
+    public void testBulkDeleteBooks() {
         bookRepository.deleteAll();
         List<Book> booksFromDB = bookRepository.findAll();
         assertThat(booksFromDB.size()).isEqualTo(0);

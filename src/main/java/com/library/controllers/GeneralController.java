@@ -1,7 +1,7 @@
 package com.library.controllers;
 
 import com.library.model.User;
-import com.library.service.SignupService;
+import com.library.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,19 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GeneralController {
 
-    private SignupService signupService;
+    private UserService userService;
 
-    public GeneralController(SignupService signupService) {
-        this.signupService = signupService;
+    public GeneralController(UserService userService) {
+        this.userService = userService;
     }
 
     @PostMapping("/signup")
     public ResponseEntity<User> signupUser(@RequestBody User user) {
-        if (signupService.registerUser(user)) {
-            return ResponseEntity.ok(user);
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
+        return ResponseEntity.ok(user);
     }
 
 }
