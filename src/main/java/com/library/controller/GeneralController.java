@@ -1,7 +1,6 @@
-package com.library.controllers;
+package com.library.controller;
 
 import com.library.dto.UserDto;
-import com.library.model.User;
 import com.library.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

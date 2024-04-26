@@ -20,11 +20,11 @@ public class UserService {
     }
 
     public void signUser(UserDto userDto) {
+        User user =
 
-
-        // Perform registration logic
-//        user.setPassword(passwordEncoderConfig.passwordEncoder()
-//                .encode(user.getPassword()));
-//        userRepository.save(user);
+        //Perform registration logic
+        user.setPassword(passwordEncoderConfig.passwordEncoder()
+                .encode(user.getPassword()));
+        userRepository.save(user);
     }
 }
