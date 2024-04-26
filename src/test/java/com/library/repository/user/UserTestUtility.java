@@ -8,7 +8,7 @@ public class UserTestUtility {
         return User.builder()
                 .username("TestUser")
                 .email("testuser@test.com")
-                .password("test")
+                .password("Password123!")
                 .build();
     }
 }

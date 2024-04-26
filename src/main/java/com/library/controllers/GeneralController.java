@@ -1,5 +1,6 @@
 package com.library.controllers;
 
+import com.library.dto.UserDto;
 import com.library.model.User;
 import com.library.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class GeneralController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<User> signupUser(@RequestBody User user) {
+    public ResponseEntity<UserDto> signupUser(@RequestBody UserDto user) {
         return ResponseEntity.ok(user);
     }
 

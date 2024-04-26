@@ -35,7 +35,7 @@ public class UserServiceTest {
         when(passwordEncoderConfig.passwordEncoder()).thenReturn(passwordEncoder);
         when(passwordEncoder.encode(rawPassword)).thenReturn(encodedPassword);
 
-        userService.signUser(user);
+//        userService.signUser(user);
 
         verify(userRepository, times(1)).save(user);
         verify(passwordEncoder, times(1)).encode(rawPassword);

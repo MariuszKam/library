@@ -29,18 +29,10 @@ public class User implements UserDetails {
     @GeneratedValue
     @Column(name = "user_id", nullable = false, unique = true)
     private Long id;
-    @NotEmpty
-    @Size(min = 2, max = 10)
     @Column(nullable = false, unique = true)
     private String username;
-    @NotEmpty
-    @Email(message = "Invalid email format")
     @Column(nullable = false, unique = true)
     private String email;
-    @NotEmpty
-    @Size(min = 8, max = 20, message = "Password must be between 8 and 20 characters")
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,20}$",
-            message = "Password must contain at least one digit, one lowercase letter, one uppercase letter, one special character, and no whitespace")
     private String password;
     @ManyToMany
     @JoinTable(

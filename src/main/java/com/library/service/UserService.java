@@ -1,9 +1,12 @@
 package com.library.service;
 
 import com.library.configuration.PasswordEncoderConfig;
+import com.library.dto.UserDto;
 import com.library.model.User;
 import com.library.repository.UserRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -16,10 +19,12 @@ public class UserService {
         this.passwordEncoderConfig = passwordEncoderConfig;
     }
 
-    public void signUser(User user) {
+    public void signUser(UserDto userDto) {
+
+
         // Perform registration logic
-        user.setPassword(passwordEncoderConfig.passwordEncoder()
-                .encode(user.getPassword()));
-        userRepository.save(user);
+//        user.setPassword(passwordEncoderConfig.passwordEncoder()
+//                .encode(user.getPassword()));
+//        userRepository.save(user);
     }
 }
